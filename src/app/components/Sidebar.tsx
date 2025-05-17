@@ -95,7 +95,7 @@ function PointCard({ data }: { data: point }) {
   const iconSrc = iconMap[data.type]
 
   return (
-    <Card style={`flex flex-col gap-[1rem] border-l-[4px] ${borderClr}`}>
+    <Card style={`flex flex-col py-[0.5rem] gap-[0.5rem] border-l-[4px] ${borderClr}`}>
       <p className="text-xl font-medium">{data.title}</p>
       <div className="flex gap-[1rem]">
         <Badge text={data.type} clr={bgClr} icon={iconSrc} />
