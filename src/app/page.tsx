@@ -4,7 +4,7 @@ import Panel from "./components/Sidebar";
 
 export default function Dashboard() {
   return (
-    // <Panel main={<Mapbox />} side={<div></div>} />
-    <Demo></Demo>
+    <Panel main={<Mapbox />} side={<div></div>} />
+    // <Demo></Demo>
   );
 }
