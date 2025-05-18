@@ -16,45 +16,19 @@ type Props = {
   side: ReactNode
 }
 
-type point = {
-  title: string,
-  type: "Crisis" | "Assets" | "Medical"
-  time: string,
-  notifications: number
-}
-
-// const pointData: point[] = [
-//   {
-//     title: "Vodno Wildfire",
-//     type: "Crisis",
-//     time: "12:48",
-//     notifications: 0
-//   },
-//   {
-//     title: "Supply Depot 12",
-//     type: "Assets",
-//     time: "19:02",
-//     notifications: 0
-//   },
-//   {
-//     title: "Medical Centre",
-//     type: "Medical",
-//     time: "00:14",
-//     notifications: 0
-//   },
-// ]
 
 export default function Sidebar({ main, side }: Props) {
   return (
     <div className="h-full flex">
-      <div className="w-[75vw] h-full">
+      <div className="w-full xl:w-[75vw] h-full">
         {main}
       </div>
-      <div className='w-[25vw] '>
+      <div className="hidden xl:block xl:w-[25vw] h-full">
         <Panel />
       </div>
     </div>
-  )
+  );
+
 }
 
 function Panel() {
