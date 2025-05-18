@@ -16,7 +16,7 @@ export default function Mapbox() {
     if (!mapContainer.current) return;
 
     // Initialize the map and store it in mapRef
-    mapRef.current = new mapboxgl.Map({ 
+    mapRef.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v11',
       center: [21.7453, 41.6086],
@@ -87,7 +87,11 @@ export default function Mapbox() {
       });
 
       mapRef.current?.on('click', 'incidents', (e) => {
-        const coordinates = e.features[0].geometry.coordinates.slice();
+
+        const feature = e.features?.[0]; if (!feature || feature.geometry.type !== 'Point') return;
+
+        const coordinates = feature.geometry.coordinates.slice() as [number, number]
+        const props = feature.properties as any
 
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -95,7 +99,7 @@ export default function Mapbox() {
 
         new mapboxgl.Popup()
           .setLngLat(coordinates)
-          .setHTML(`<p>Hello World</p>`)
+          .setHTML(`<p>${props.title}</p>`)
           .addTo(mapRef.current!);
       })
 
