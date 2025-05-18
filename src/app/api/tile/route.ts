@@ -58,8 +58,6 @@ export async function GET(req: NextRequest) {
   const tileRes = await fetch(wmsUrl)
   const buffer = await tileRes.arrayBuffer()
 
-  console.log(`BBOX: ${minX},${minY},${maxX},${maxY}`)
-
   return new Response(Buffer.from(buffer), {
     headers: {
       'Content-Type': 'image/png',

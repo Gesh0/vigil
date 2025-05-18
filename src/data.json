@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.43, 41.99]
+      },
+      "properties": {
+        "id": "vodno-wildfire",
+        "title": "Vodno Wildfire",
+        "type": "Crisis",
+        "time": "12:48",
+        "notifications": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.48, 41.85]
+      },
+      "properties": {
+        "id": "supply-depot-12",
+        "title": "Supply Depot 12",
+        "type": "Assets",
+        "time": "12:48",
+        "notifications": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [21.56, 41.78]
+      },
+      "properties": {
+        "id": "medical-centre-10",
+        "title": "Medical Centre",
+        "type": "Medical",
+        "time": "12:48",
+        "notifications": 0
+      }
+    }
+  ]
+}

@@ -8,6 +8,8 @@ import Controls from "./Controls"
 import Card from "./Card"
 import Badge from "./Badge"
 import Image from "next/image"
+import points from '@/data.json';
+
 
 type Props = {
   main: ReactNode
@@ -21,26 +23,26 @@ type point = {
   notifications: number
 }
 
-const pointData: point[] = [
-  {
-    title: "Vodno Wildfire",
-    type: "Crisis",
-    time: "12:48",
-    notifications: 0
-  },
-  {
-    title: "Supply Depot 12",
-    type: "Assets",
-    time: "19:02",
-    notifications: 0
-  },
-  {
-    title: "Medical Centre",
-    type: "Medical",
-    time: "19:02",
-    notifications: 0
-  },
-]
+// const pointData: point[] = [
+//   {
+//     title: "Vodno Wildfire",
+//     type: "Crisis",
+//     time: "12:48",
+//     notifications: 0
+//   },
+//   {
+//     title: "Supply Depot 12",
+//     type: "Assets",
+//     time: "19:02",
+//     notifications: 0
+//   },
+//   {
+//     title: "Medical Centre",
+//     type: "Medical",
+//     time: "00:14",
+//     notifications: 0
+//   },
+// ]
 
 export default function Sidebar({ main, side }: Props) {
   return (
@@ -63,36 +65,37 @@ function Panel() {
       <Input />
       <Controls />
       <Separator />
-      {pointData.map((point, index) => (
-        <PointCard data={point} key={index} />
+      {points.features.map((point, index) => (
+        <PointCard data={point.properties} key={index} />
       ))}
     </div>
   )
 }
 
-function PointCard({ data }: { data: point }) {
-
+function PointCard({ data }: { data: any }) {
   const borderMap = {
     Crisis: "border-orange-600",
     Assets: "border-sky-600",
     Medical: "border-emerald-600",
-  }
+  };
 
   const bgMap = {
     Crisis: "bg-orange-600",
     Assets: "bg-sky-600",
     Medical: "bg-emerald-600",
-  }
+  };
 
   const iconMap = {
     Crisis: "./error_24.svg",
     Assets: "./package_24.svg",
     Medical: "./health_cross_24.svg",
-  }
+  };
 
-  const borderClr = borderMap[data.type]
-  const bgClr = bgMap[data.type]
-  const iconSrc = iconMap[data.type]
+  const type = data.type as keyof typeof borderMap;
+
+  const borderClr = borderMap[type];
+  const bgClr = bgMap[type];
+  const iconSrc = iconMap[type];
 
   return (
     <Card style={`flex flex-col py-[0.5rem] gap-[0.5rem] border-l-[4px] ${borderClr}`}>
@@ -100,14 +103,16 @@ function PointCard({ data }: { data: point }) {
       <div className="flex gap-[1rem]">
         <Badge text={data.type} clr={bgClr} icon={iconSrc} />
         <div className="flex flex-wrap gap-[0.5rem] content-center">
-          <Image src={"/schedule_24.svg"} alt="clock icon" width={16} height={16} className="h-[16px] " />
+          <Image src={"/schedule_24.svg"} alt="clock icon" width={16} height={16} className="h-[16px]" />
           <p className="h-[16px] text-[16px] leading-[16px]">{data.time}</p>
         </div>
         <div className="flex flex-wrap gap-[0.5rem] content-center">
-          <Image src={"/notification_24.svg"} alt="clock icon" width={16} height={16} className="h-[16px]" />
-          <p className="h-[16px] text-[16px] leading-[16px]">{data.notifications ? data.notifications : "none"}</p>
+          <Image src={"/notification_24.svg"} alt="notification icon" width={16} height={16} className="h-[16px]" />
+          <p className="h-[16px] text-[16px] leading-[16px]">
+            {data.notifications ? data.notifications : "none"}
+          </p>
         </div>
       </div>
     </Card>
-  )
+  );
 }
